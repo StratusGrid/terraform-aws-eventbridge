@@ -1,0 +1,19 @@
+Description: EventBridge Bus
+
+Parameters:
+  EventBridgeBusName:
+    Type: String
+    Description: "Name of the EventBridge Bus"
+
+Resources:
+  EventBridgeBus:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name:
+        Ref: EventBridgeBusName
+
+Outputs:
+  EventBridgeBusArn:
+    Value: !GetAtt EventBridgeBus.Arn
+  EventBridgeBusName:
+    Value: !GetAtt EventBridgeBus.Name
