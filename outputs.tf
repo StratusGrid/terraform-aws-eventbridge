@@ -5,3 +5,7 @@ output "bus_arn" {
 output "bus_name" {
   value = join("", aws_cloudformation_stack.this.*.outputs.EventBridgeBusName)
 }
+
+output "rule_arn" {
+  value = join(",", aws_cloudformation_stack.rule.*.outputs.EventRuleArn)
+}

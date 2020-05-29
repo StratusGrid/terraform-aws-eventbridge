@@ -13,3 +13,16 @@ variable "tags" {
 variable "bus_name" {
   type = string
 }
+
+variable "name_prefix" {
+  type = string
+}
+
+variable "name_suffix" {
+  type = string
+}
+
+variable "rule_map" {
+  type = list(map(string))
+}
+

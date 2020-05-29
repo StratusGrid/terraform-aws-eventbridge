@@ -1,0 +1,36 @@
+Description: Events Rule
+
+Parameters:
+  EventsRuleName:
+    Type: String
+    Description: "Name of the EventBridge Rule"
+  EventsBusName:
+    Type: String
+    Description: "Name of the EventBridge Bus"
+  EventsRulePattern:
+    Type: String
+    Description: "Rule Pattern"
+  EventsRuleTargetArn:
+    Type: String
+    Description: "Rule Target ARN"
+  EventsRuleTargetId:
+    Type: String
+    Description: "Rule Target ID"
+
+Resources:
+  EventsRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name:
+        Ref: EventsRuleName
+      EventBusName:
+        Ref: EventsBusName
+      EventPattern:
+        Ref: EventsRulePattern
+      Targets:
+        - Arn: !Ref EventsRuleTargetArn
+          Id: !Ref EventsRuleTargetId
+
+Outputs:
+  EventRuleArn:
+    Value: !GetAtt EventsRule.Arn
