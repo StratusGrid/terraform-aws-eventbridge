@@ -25,4 +25,3 @@ variable "name_suffix" {
 variable "rule_map" {
   type = list(map(string))
 }
-

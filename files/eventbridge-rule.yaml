@@ -1,36 +1,44 @@
 Description: Events Rule
-
 Parameters:
   EventsRuleName:
     Type: String
-    Description: "Name of the EventBridge Rule"
+    Description: Name of the EventBridge Rule
   EventsBusName:
     Type: String
-    Description: "Name of the EventBridge Bus"
+    Description: Name of the EventBridge Bus
   EventsRulePattern:
     Type: String
-    Description: "Rule Pattern"
+    Description: Rule Pattern
   EventsRuleTargetArn:
     Type: String
-    Description: "Rule Target ARN"
+    Description: Rule Target ARN
   EventsRuleTargetId:
     Type: String
-    Description: "Rule Target ID"
-
+    Description: Rule Target ID
+  EventsRuleTargetRoleArn:
+    Type: String
+    Description: Role being used by Target
+Conditions:
+  HasRoleARN: !Not 
+    - !Equals 
+      - ''
+      - !Ref EventsRuleTargetRoleArn
 Resources:
   EventsRule:
-    Type: AWS::Events::Rule
+    Type: 'AWS::Events::Rule'
     Properties:
-      Name:
-        Ref: EventsRuleName
-      EventBusName:
-        Ref: EventsBusName
-      EventPattern:
-        Ref: EventsRulePattern
+      Name: !Ref EventsRuleName
+      EventBusName: !Ref EventsBusName
+      EventPattern: !Ref EventsRulePattern
       Targets:
         - Arn: !Ref EventsRuleTargetArn
           Id: !Ref EventsRuleTargetId
-
+          RoleArn: !If 
+            - HasRoleARN
+            - !Ref EventsRuleTargetRoleArn
+            - !Ref 'AWS::NoValue'
 Outputs:
   EventRuleArn:
-    Value: !GetAtt EventsRule.Arn
+    Value: !GetAtt 
+      - EventsRule
+      - Arn
