@@ -7,7 +7,7 @@ resource "aws_cloudformation_stack" "this" {
     EventBridgeBusName = "${var.name_prefix}${var.bus_name}${var.name_suffix}"
   }
 
-  tags = var.tags
+  tags = local.common_tags
 }
 
 resource "aws_cloudformation_stack" "rule" {
@@ -25,5 +25,5 @@ resource "aws_cloudformation_stack" "rule" {
     EventsRuleTargetRoleArn = var.rule_map[count.index]["RoleArn"]
   }
 
-  tags = var.tags
+  tags = local.common_tags
 }
