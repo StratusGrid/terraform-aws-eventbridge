@@ -19,13 +19,13 @@ Parameters:
     Type: String
     Description: Role being used by Target
 Conditions:
-  HasRoleARN: !Not 
-    - !Equals 
-      - ''
+  HasRoleARN: !Not
+    - !Equals
+      - ""
       - !Ref EventsRuleTargetRoleArn
 Resources:
   EventsRule:
-    Type: 'AWS::Events::Rule'
+    Type: "AWS::Events::Rule"
     Properties:
       Name: !Ref EventsRuleName
       EventBusName: !Ref EventsBusName
@@ -33,12 +33,12 @@ Resources:
       Targets:
         - Arn: !Ref EventsRuleTargetArn
           Id: !Ref EventsRuleTargetId
-          RoleArn: !If 
+          RoleArn: !If
             - HasRoleARN
             - !Ref EventsRuleTargetRoleArn
-            - !Ref 'AWS::NoValue'
+            - !Ref "AWS::NoValue"
 Outputs:
   EventRuleArn:
-    Value: !GetAtt 
+    Value: !GetAtt
       - EventsRule
       - Arn

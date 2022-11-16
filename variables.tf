@@ -11,17 +11,21 @@ variable "tags" {
 }
 
 variable "bus_name" {
-  type = string
+  description = "EventBridge bus name"
+  type        = string
 }
 
 variable "name_prefix" {
-  type = string
+  description = "String to prefix on object names"
+  type        = string
 }
 
 variable "name_suffix" {
-  type = string
+  description = "String to append to the name_suffix used on object names. This is optional, so start with dash if using like so: -mysuffix. This will result in prefix-objectname-env-mysuffix"
+  type        = string
 }
 
 variable "rule_map" {
-  type = list(map(string))
+  description = "EventBridge rule map"
+  type        = list(map(string))
 }

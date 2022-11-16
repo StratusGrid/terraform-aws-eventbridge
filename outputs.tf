@@ -1,11 +1,14 @@
 output "bus_arn" {
-  value = join("", aws_cloudformation_stack.this.*.outputs.EventBridgeBusArn)
+  description = "EventBridge bus ARN"
+  value       = join("", aws_cloudformation_stack.this[*].outputs.EventBridgeBusArn)
 }
 
 output "bus_name" {
-  value = join("", aws_cloudformation_stack.this.*.outputs.EventBridgeBusName)
+  description = "EventBridge bus name"
+  value       = join("", aws_cloudformation_stack.this[*].outputs.EventBridgeBusName)
 }
 
 output "rule_arn" {
-  value = join(",", aws_cloudformation_stack.rule.*.outputs.EventRuleArn)
+  description = "EventBridge rule ARN"
+  value       = join(",", aws_cloudformation_stack.rule[*].outputs.EventRuleArn)
 }
