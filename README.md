@@ -6,7 +6,10 @@ GitHub: [StratusGrid/terraform-aws-eventbridge](https://github.com/StratusGrid/t
 module "terraform_aws_eventbridge" {
   source  = "StratusGrid/terraform-aws-eventbridge/aws"
   version = "1.0.0"
-  project_name = "projectname"
+  bus_name = "mybusname"
+  name_prefix = "myprojectname"
+  name_suffix = "env"
+  rule_map = "myrulemapinjson"
 }
 ```
 ## StratusGrid Standards we assume
