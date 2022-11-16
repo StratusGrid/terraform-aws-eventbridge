@@ -1,0 +1,5 @@
+module "terraform_aws_eventbridge" {
+  source  = "StratusGrid/terraform-aws-eventbridge/aws"
+  version = "1.0.0"
+  project_name = "projectname"
+}
